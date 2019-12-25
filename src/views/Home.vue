@@ -1,18 +1,45 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <main class="product-page">
+      <div class="container">
+        <ul class="product-list">
+          <li
+            class="product-list__item"
+            v-for="(product, index) in products"
+            :key="index"
+          >
+            <ProductComponent
+              :product="product"
+            ></ProductComponent>
+          </li>
+        </ul>
+        <!-- <PaginationComponent @prevPage="refreshPage" @nextPage="refreshPage"></PaginationComponent> -->
+      </div>
+    </main>
   </div>
 </template>
 
-<script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+<script lang="ts">
+import Vue from "vue";
+import { State, Action, Getter } from "vuex-class";
+import Component from "vue-class-component";
+import { ProductState, Product } from "../store/product/types";
+import ProductComponent from "../components/Product.vue";
 
-export default {
-  name: "home",
+const namespace: string = "product";
+@Component({
   components: {
-    HelloWorld
+    ProductComponent
   }
-};
+})
+export default class Home extends Vue {
+  @State("product") productState!: ProductState;
+  @Action("getProducts", { namespace }) getProducts: any;
+  @Getter("products", { namespace }) products!: Array<Product>;
+
+  mounted() {
+    // fetching data as soon as the component's been mounted
+    this.getProducts();
+  }
+}
 </script>
