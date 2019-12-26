@@ -16,12 +16,12 @@ export const mutations: MutationTree<ProductState> = {
   },
   removeFromWishlist(state, payload: String) {
     const index = state.wishlist.findIndex(el => el.uuid === payload);
-    if (index !== -1) state.wishlist.splice(index, index);
+    if (index !== -1) state.wishlist.splice(index, 1);
   },
   removeFromCart(state, payload: String) {
     const index = state.cart.findIndex(el => el.uuid === payload);
     if (index !== -1)
       if (state.cart[index].quantity > 1) state.cart[index].quantity--;
-      else state.cart.splice(index, index);
+      else state.cart.splice(index, 1);
   }
 };

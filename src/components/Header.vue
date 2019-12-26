@@ -4,7 +4,7 @@
       <h1 class="page-title">BRAND</h1>
       <aside class="header-bag">
         <div class="header-bag__item header-bag__count">
-          <div class="header-bag__price">€ {{ 'totalPrice.toFixed(2)' }}</div>
+          <div class="header-bag__price">€ {{ totalPrice }}</div>
           <svg
             class="icon"
             width="17px"
@@ -22,7 +22,7 @@
               fill-rule="evenodd"
             />
           </svg>
-          <span class="bag__item-counter">{{ 'cart.length' }}</span>
+          <span class="bag__item-counter">{{ productCount }}</span>
         </div>
         <div class="header-bag__item header-bag__wishlist-count">
           <svg
@@ -42,7 +42,7 @@
               points="12.3598869 13.2675869 20 13.2675869 13.8200565 17.7545318 16.1782804 25.0221187 9.99833694 20.5318477 3.81839348 25.0221187 6.17994346 17.7545318 0 13.2675869 7.63678696 13.2675869 9.99833694 6"
             />
           </svg>
-          <span class="bag__item-counter">{{ 'wishlist.length' }}</span>
+          <span class="bag__item-counter">{{ wishlist.length }}</span>
         </div>
       </aside>
     </header>
@@ -51,9 +51,17 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
+import { State, Action, Getter } from "vuex-class";
+import { ProductState, Product } from "../store/product/types";
+const namespace: string = "product";
 
 @Component
-export default class HeaderComponent extends Vue {}
+export default class HeaderComponent extends Vue {
+  @Getter("wishlist", { namespace }) wishlist!: Array<Product>;
+  @Getter("cart", { namespace }) cart!: Array<Product>;
+  @Getter("totalPrice", { namespace }) totalPrice!: String;
+  @Getter("productCount", { namespace }) productCount!: number;
+}
 </script>
 
 <style scoped lang="scss">

@@ -8,9 +8,7 @@
             v-for="(product, index) in products"
             :key="index"
           >
-            <ProductComponent
-              :product="product"
-            ></ProductComponent>
+            <ProductComponent :product="product"></ProductComponent>
           </li>
         </ul>
         <!-- <PaginationComponent @prevPage="refreshPage" @nextPage="refreshPage"></PaginationComponent> -->
@@ -38,7 +36,6 @@ export default class Home extends Vue {
   @Getter("products", { namespace }) products!: Array<Product>;
 
   mounted() {
-    // fetching data as soon as the component's been mounted
     this.getProducts();
   }
 }

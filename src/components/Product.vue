@@ -9,7 +9,11 @@
           itemprop="image"
         />
         <button
+          @click="
+            inWishlist() ? removeFromWishlistClick() : addToWishlistClick()
+          "
           class="product__wishlist-button button button--round button--wishlist"
+          :class="inWishlist() ? 'button--wishlist-selected' : ''"
         >
           <svg
             class="icon"
@@ -54,8 +58,26 @@
             }}</span>
           </div>
         </div>
-        <button class="product__add-to-cart button button--primary">
+        <button
+          v-if="!inCart()"
+          @click="addToCartClick()"
+          class="product__add-to-cart button button--primary"
+        >
           Add to Cart
+        </button>
+        <button
+          v-if="inCart()"
+          @click="addToCartClick()"
+          class="product__add-to-cart button button--primary button--in-cart"
+        >
+          In Cart
+        </button> <br>
+        <button
+          v-if="inCart()"
+          @click="removeFromCartClick()"
+          class="product__add-to-cart button button--primary"
+        >
+          Remove from Cart
         </button>
       </div>
     </article>
@@ -64,11 +86,48 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-import { Product } from "../store/product/types";
+import { State, Action, Getter } from "vuex-class";
+import { ProductState, Product } from "../store/product/types";
+const namespace = "product";
 
 @Component
 export default class ProductComponent extends Vue {
   @Prop({ type: Object, default: null }) product!: Product;
+  @Action("addToCart", { namespace }) addToCart: any;
+  @Action("addToWishlist", { namespace }) addToWishlist: any;
+  @Action("removeFromCart", { namespace }) removeFromCart: any;
+  @Action("removeFromWishlist", { namespace }) removeFromWishlist: any;
+
+  @Getter("wishlist", { namespace }) wishlist!: Array<Product>;
+  @Getter("cart", { namespace }) cart!: Array<Product>;
+
+  addToCartClick() {
+    this.addToCart(this.product);
+  }
+
+  addToWishlistClick() {
+    this.addToWishlist(this.product);
+  }
+
+  removeFromCartClick() {
+    this.removeFromCart(this.product.uuid);
+  }
+
+  removeFromWishlistClick() {
+    this.removeFromWishlist(this.product.uuid);
+  }
+
+  inWishlist(): Boolean {
+    return this.wishlist
+      ? this.wishlist.findIndex(el => el.uuid === this.product.uuid) !== -1
+      : false;
+  }
+
+  inCart(): Boolean {
+    return this.cart
+      ? this.cart.findIndex(el => el.uuid === this.product.uuid) !== -1
+      : false;
+  }
 }
 </script>
 

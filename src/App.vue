@@ -167,12 +167,19 @@ main {
   border: 1px solid #444a59;
 }
 
+.button--wishlist-selected {
+  border: 1px solid #444a59;
+}
+
+.button--wishlist-selected > .icon {
+  fill: #444a59;
+}
+
 .button--wishlist:hover > .icon {
   fill: #444a59;
 }
 
 .button--in-cart {
-  pointer-events: none;
   background-color: #d9d9d9;
 }
 

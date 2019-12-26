@@ -17,12 +17,23 @@ export const actions: ActionTree<ProductState, RootState> = {
     }).then(
       response => {
         const payload: Array<Product> = response && response.data;
-        console.log(response.data);
         commit("productsLoaded", payload);
       },
       error => {
         console.log(error);
       }
     );
+  },
+  addToCart({ commit }, product: Product): any {
+    commit("addToCart", product);
+  },
+  addToWishlist({ commit }, product: Product): any {
+    commit("addToWishlist", product);
+  },
+  removeFromCart({ commit }, product: String): any {
+    commit("removeFromCart", product);
+  },
+  removeFromWishlist({ commit }, product: String): any {
+    commit("removeFromWishlist", product);
   }
 };
