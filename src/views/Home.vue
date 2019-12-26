@@ -11,7 +11,7 @@
             <ProductComponent :product="product"></ProductComponent>
           </li>
         </ul>
-        <!-- <PaginationComponent @prevPage="refreshPage" @nextPage="refreshPage"></PaginationComponent> -->
+        <PaginationComponent></PaginationComponent>
       </div>
     </main>
   </div>
@@ -23,11 +23,13 @@ import { State, Action, Getter } from "vuex-class";
 import Component from "vue-class-component";
 import { ProductState, Product } from "../store/product/types";
 import ProductComponent from "../components/Product.vue";
+import PaginationComponent from "../components/Pagination.vue";
 
 const namespace: string = "product";
 @Component({
   components: {
-    ProductComponent
+    ProductComponent,
+    PaginationComponent
   }
 })
 export default class Home extends Vue {

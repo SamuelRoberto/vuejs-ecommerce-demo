@@ -5,6 +5,12 @@ export const mutations: MutationTree<ProductState> = {
   productsLoaded(state, payload: Array<Product>) {
     state.products = payload;
   },
+  prevPage(state) {
+    state.selectedPage > 0 ? state.selectedPage-- : null;
+  },
+  nextPage(state) {
+    state.selectedPage++;
+  },
   loadCartAndWishlistFromStorage(state) {
     state.wishlist = JSON.parse(localStorage.getItem("wishlist") || "") || [];
     state.cart = JSON.parse(localStorage.getItem("cart") || "") || [];

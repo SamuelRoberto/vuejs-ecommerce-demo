@@ -3,7 +3,7 @@
     <nav class="pagination">
       <ul class="pagination__list">
         <li class="pagination__item">
-          <a v-on:click="prevPage()" class="pagination__link">
+          <a @click="prevPageClick()" class="pagination__link">
             <svg
               class="icon"
               width="8px"
@@ -28,7 +28,7 @@
           <a class="pagination__link">{{ selectedPage }}</a>
         </li>
         <li class="pagination__item">
-          <a v-on:click="nextPage()" class="pagination__link">
+          <a @click="nextPageClick()" class="pagination__link">
             <svg
               class="icon"
               width="8px"
@@ -55,9 +55,27 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
+import { State, Action, Getter } from "vuex-class";
+import { ProductState, Product } from "../store/product/types";
+const namespace = "product";
 
 @Component
-export default class PaginationComponent extends Vue {}
+export default class PaginationComponent extends Vue {
+  @Getter("selectedPage", { namespace }) selectedPage: any;
+  @Action("prevPage", { namespace }) prevPage: any;
+  @Action("nextPage", { namespace }) nextPage: any;
+  @Action("getProducts", { namespace }) getProducts: any;
+
+  prevPageClick() {
+    this.prevPage();
+    this.getProducts();
+  }
+
+  nextPageClick() {
+    this.nextPage();
+    this.getProducts();
+  }
+}
 </script>
 
 <style scoped lang="scss">

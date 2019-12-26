@@ -1,6 +1,6 @@
 export interface ProductState {
   products: Array<Product>;
-  selectedPage: Number;
+  selectedPage: number;
   wishlist: Array<Product>;
   cart: Array<Product>;
   totalPrice: Number;
