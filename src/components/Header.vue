@@ -73,50 +73,40 @@ export default class HeaderComponent extends Vue {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  background-color: #ffc400;
+  color: white;
 }
-
-.page-title {
-  font-size: 20px;
-}
-
-/* ==========================================================================
-   Bag
-   ========================================================================== */
 
 .header-bag {
   display: flex;
   flex-direction: row;
   align-items: flex-end;
-}
 
-.header-bag__item {
-  height: 25px;
+  &__item {
+    height: 25px;
+    display: flex;
+    align-items: flex-end;
+    & .icon {
+      height: auto;
+      fill: white;
+    }
+  }
 
-  display: flex;
-  align-items: flex-end;
-}
+  &__price {
+    margin-right: 5px;
+    font-size: 12px;
+    line-height: 12px;
+  }
+  &__count {
+    margin-left: 10px;
+    & .icon {
+      width: 17px;
+    }
+  }
 
-.header-bag__item .icon {
-  height: auto;
-  fill: #444a59;
-}
-
-.header-bag__price {
-  margin-right: 5px;
-  font-size: 12px;
-  line-height: 12px;
-}
-
-.header-bag__count {
-  margin-left: 10px;
-}
-
-.header-bag__count .icon {
-  width: 17px;
-}
-
-.header-bag__wishlist-count {
-  margin-left: 10px;
+  &__wishlist-count {
+    margin-left: 10px;
+  }
 }
 
 .bag__item-counter {
@@ -135,6 +125,6 @@ export default class HeaderComponent extends Vue {
 
   border-radius: 50%;
   color: #ffffff;
-  background-color: #358ed7;
+  background-color: #ff3d00;
 }
 </style>

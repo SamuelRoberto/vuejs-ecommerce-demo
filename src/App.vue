@@ -2,16 +2,19 @@
   <div id="app">
     <HeaderComponent />
     <router-view />
+    <FooterComponent />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 import HeaderComponent from "@/components/Header.vue";
+import FooterComponent from "@/components/Footer.vue";
 
 @Component({
   components: {
-    HeaderComponent
+    HeaderComponent,
+    FooterComponent
   }
 })
 export default class App extends Vue {}
@@ -181,14 +184,5 @@ main {
 
 .button--in-cart {
   background-color: #d9d9d9;
-}
-
-/* ==========================================================================
-   Footer
-   ========================================================================== */
-
-.footer__sidenote {
-  font-family: "Lato-Bold", sans-serif;
-  letter-spacing: 1.37px;
 }
 </style>

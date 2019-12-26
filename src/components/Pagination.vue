@@ -87,39 +87,34 @@ export default class PaginationComponent extends Vue {
   height: 45px;
   margin: 30px auto;
   text-align: center;
-}
-
-.pagination__list {
-  height: 100%;
-  display: inline-flex;
-  flex-direction: row;
-  align-items: center;
-}
-
-.pagination__item {
-  height: 100%;
-  width: 45px;
-  font-family: "Lato-Bold", sans-serif;
-  font-size: 13px;
-  letter-spacing: 1.39px;
-  text-align: center;
-}
-
-.pagination__link {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #444a59;
-}
-
-.pagination__link:hover {
-  text-decoration: underline;
-}
-
-.pagination__link .icon {
-  width: 8px;
-  fill: #444a59;
+  &__list {
+    height: 100%;
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  &__item {
+    height: 100%;
+    width: 45px;
+    font-family: "Lato-Bold", sans-serif;
+    font-size: 13px;
+    letter-spacing: 1.39px;
+    text-align: center;
+  }
+  &__link {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #444a59;
+    &:hover {
+      text-decoration: underline;
+    }
+    & .icon {
+      width: 8px;
+      fill: #444a59;
+    }
+  }
 }
 </style>
