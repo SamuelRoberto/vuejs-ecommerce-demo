@@ -24,6 +24,9 @@ export const actions: ActionTree<ProductState, RootState> = {
       }
     );
   },
+  loadCartAndWishlist({ commit }): any {
+    commit("loadCartAndWishlistFromStorage");
+  },
   addToCart({ commit }, product: Product): any {
     commit("addToCart", product);
   },

@@ -71,7 +71,8 @@
           class="product__add-to-cart button button--primary button--in-cart"
         >
           In Cart
-        </button> <br>
+        </button>
+        <br />
         <button
           v-if="inCart()"
           @click="removeFromCartClick()"

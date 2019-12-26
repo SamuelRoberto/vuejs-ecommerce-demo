@@ -33,10 +33,12 @@ const namespace: string = "product";
 export default class Home extends Vue {
   @State("product") productState!: ProductState;
   @Action("getProducts", { namespace }) getProducts: any;
+  @Action("loadCartAndWishlist", { namespace }) loadCartAndWishlist: any;
   @Getter("products", { namespace }) products!: Array<Product>;
 
   mounted() {
     this.getProducts();
+    this.loadCartAndWishlist();
   }
 }
 </script>
