@@ -4,6 +4,7 @@
       <h1 class="page-title">BRAND</h1>
       <aside class="header-bag">
         <div class="header-bag__item header-bag__count">
+          <CartComponent v-if="cartOpen"></CartComponent>
           <div class="header-bag__price">€ {{ totalPrice }}</div>
           <svg
             class="icon"
@@ -13,6 +14,7 @@
             version="1.1"
             xmlns="http://www.w3.org/2000/svg"
             xmlns:xlink="http://www.w3.org/1999/xlink"
+            @click="toggleCart()"
           >
             <title>Bag Icon</title>
             <path
@@ -53,14 +55,25 @@
 import { Component, Prop, Vue } from "vue-property-decorator";
 import { State, Action, Getter } from "vuex-class";
 import { ProductState, Product } from "../store/product/types";
+import CartComponent from "./Cart.vue";
 const namespace: string = "product";
 
-@Component
+@Component({
+  components: {
+    CartComponent
+  }
+})
 export default class HeaderComponent extends Vue {
   @Getter("wishlist", { namespace }) wishlist!: Array<Product>;
   @Getter("cart", { namespace }) cart!: Array<Product>;
   @Getter("totalPrice", { namespace }) totalPrice!: String;
   @Getter("productCount", { namespace }) productCount!: number;
+
+  cartOpen: boolean = false;
+
+  toggleCart() {
+    this.cartOpen = !this.cartOpen;
+  }
 }
 </script>
 

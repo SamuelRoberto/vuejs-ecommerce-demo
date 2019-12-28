@@ -12,8 +12,8 @@ export const mutations: MutationTree<ProductState> = {
     state.selectedPage++;
   },
   loadCartAndWishlistFromStorage(state) {
-    state.wishlist = JSON.parse(localStorage.getItem("wishlist") || "") || [];
-    state.cart = JSON.parse(localStorage.getItem("cart") || "") || [];
+    state.wishlist = JSON.parse(localStorage.getItem("wishlist") || "{}") || [];
+    state.cart = JSON.parse(localStorage.getItem("cart") || "{}") || [];
   },
   addToCart(state, payload: Product) {
     const index = state.cart.findIndex(el => el.uuid === payload.uuid);
