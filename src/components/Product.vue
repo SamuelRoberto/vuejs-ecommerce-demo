@@ -102,37 +102,54 @@ export default class ProductComponent extends Vue {
   @Getter("wishlist", { namespace }) wishlist!: Array<Product>;
   @Getter("cart", { namespace }) cart!: Array<Product>;
 
+  /**
+   * Add item to Cart
+   */
   addToCartClick() {
     this.addToCart(this.product);
   }
 
+  /**
+   * Add item to Wishlist
+   */
   addToWishlistClick() {
     this.addToWishlist(this.product);
   }
 
+  /**
+   * Remove item from Cart
+   */
   removeFromCartClick() {
     this.removeFromCart(this.product.uuid);
   }
 
+  /**
+   * Remove item from Wishlist
+   */
   removeFromWishlistClick() {
     this.removeFromWishlist(this.product.uuid);
   }
 
+  /**
+   * Check if item is in Wishlist
+   */
   inWishlist(): Boolean {
-    return this.wishlist
+    return this.wishlist && this.wishlist instanceof Array
       ? this.wishlist.findIndex(el => el.uuid === this.product.uuid) !== -1
       : false;
   }
 
+  /**
+   * Check if item is in Cart
+   */
   inCart(): Boolean {
-    return this.cart
+    return this.cart && this.cart instanceof Array
       ? this.cart.findIndex(el => el.uuid === this.product.uuid) !== -1
       : false;
   }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 /* ==========================================================================
    Product

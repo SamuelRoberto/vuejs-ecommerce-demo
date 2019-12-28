@@ -42,17 +42,24 @@ export default class CartComponent extends Vue {
   @Action("addToCart", { namespace }) addToCart: any;
   @Action("removeFromCart", { namespace }) removeFromCart: any;
 
+  /**
+   * Add quantity of selected product
+   * @param item Product item
+   */
   addQuantity(item: Product) {
     this.addToCart(item);
   }
 
+  /**
+   * Remove quantity of selected product
+   * @param item Product item
+   */
   removeQuantity(item: Product) {
     this.removeFromCart(item.uuid);
   }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 /* ==========================================================================
    Header - Cart

@@ -66,11 +66,17 @@ export default class PaginationComponent extends Vue {
   @Action("nextPage", { namespace }) nextPage: any;
   @Action("getProducts", { namespace }) getProducts: any;
 
+  /**
+   * Select previuos page
+   */
   prevPageClick() {
     this.prevPage();
     this.getProducts();
   }
 
+  /**
+   * Select next page
+   */
   nextPageClick() {
     this.nextPage();
     this.getProducts();

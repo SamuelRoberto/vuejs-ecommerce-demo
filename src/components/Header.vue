@@ -44,7 +44,7 @@
               points="12.3598869 13.2675869 20 13.2675869 13.8200565 17.7545318 16.1782804 25.0221187 9.99833694 20.5318477 3.81839348 25.0221187 6.17994346 17.7545318 0 13.2675869 7.63678696 13.2675869 9.99833694 6"
             />
           </svg>
-          <span class="bag__item-counter">{{ wishlist.length }}</span>
+          <span class="bag__item-counter">{{ wishlist.length || 0 }}</span>
         </div>
       </aside>
     </header>
@@ -71,6 +71,9 @@ export default class HeaderComponent extends Vue {
 
   cartOpen: boolean = false;
 
+  /**
+   * Open and close cart popup
+   */
   toggleCart() {
     this.cartOpen = !this.cartOpen;
   }
