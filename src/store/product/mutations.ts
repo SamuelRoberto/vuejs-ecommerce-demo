@@ -29,8 +29,8 @@ export const mutations: MutationTree<ProductState> = {
    * @param state State Object
    */
   loadCartAndWishlistFromStorage(state) {
-    state.wishlist = JSON.parse(localStorage.getItem("wishlist") || "{}") || [];
-    state.cart = JSON.parse(localStorage.getItem("cart") || "{}") || [];
+    state.wishlist = JSON.parse(localStorage.getItem("wishlist") || "[]") || [];
+    state.cart = JSON.parse(localStorage.getItem("cart") || "[]") || [];
   },
   /**
    * Update store with new item in Cart
